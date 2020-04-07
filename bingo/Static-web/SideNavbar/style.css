@@ -32,19 +32,7 @@ body {
   margin-left: 50px;
 }
 
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-}
-
-.openbtn:hover {
-  background-color: #444;
-}
-
+/*Here goes the content*/
 #main {
   transition: margin-left 0.5s;
   padding: 16px;
@@ -60,6 +48,7 @@ body {
   }
 }
 
+/*This is my code*/
 .logo img {
   max-width: 100%;
 }

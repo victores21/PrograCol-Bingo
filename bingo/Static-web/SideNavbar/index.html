@@ -1,36 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./sidebar.css" />
+    <title>Profile</title>
   </head>
   <body>
-    <div id="mySidebar" class="sidebar">
-      <div class="logo">
-        <img src="../../src/images/bingo-logo.png" alt="" />
+    <div class="profile-container">
+      <div class="left-navbar" id="left-navbar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          >&times;</a
+        >
+        <div class="logo">
+          <img src="../../src/images/bingo-logo.png" alt="" />
+        </div>
+        <div class="navbar-links">
+          <ul>
+            <li id="super-admin-span">
+              <a href=""><span>Super Admin</span></a>
+            </li>
+            <li>
+              <a href=""><i class="fas fa-address-book"></i>Mi Perfil</a>
+            </li>
+            <li id="figures">
+              <a href=""><i class="fas fa-th"></i>Figuras y Modalidades</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <!--Button-->
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-      <!--Links-->
-      <div class="navbar-links">
-        <ul>
-          <li id="super-admin-span">
-            <a href=""><span>Super Admin</span></a>
-          </li>
-          <li>
-            <a href=""><i class="fas fa-address-book"></i>Mi Perfil</a>
-          </li>
-          <li id="figures">
-            <a href=""><i class="fas fa-th"></i>Figuras y Modalidades</a>
-          </li>
-        </ul>
+      <div id="main">
+        <!--Top navbar-->
+        <div class="top-navbar">
+          <div class="hamburguer">
+            <i class="fas fa-bars openbtn" onclick="openNav()"></i>
+          </div>
+          <div class="title-top-navbar">
+            <p>Sala Verano 22</p>
+          </div>
+          <div class="user-icon">
+            <i class="fas fa-user-alt"></i>
+          </div>
+        </div>
+        <!--User Info-->
+        <div class="user-info">
+          <div class="back-button">
+            <button><i class="fas fa-arrow-left"></i></button>
+          </div>
+          <!--Container user-->
+          <div class="user-info-container">
+            <!--Container's left side-->
+            <div class="user-info-left">
+              <ul>
+                <li>
+                  <div class="content-user-x">
+                    <div class="icon">
+                      <i class="fas fa-user-alt"></i>
+                    </div>
+                    <div class="text-as">
+                      <div class="name-title">
+                        <p>Nombre</p>
+                      </div>
+                      <div class="name">
+                        <p class="user-info-title">Superadmin</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="content-user-x">
+                    <div class="icon">
+                      <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="text-as">
+                      <div class="name-title">
+                        <p>Apellidos</p>
+                      </div>
+                      <div class="name">
+                        <p class="user-info-title">Michael</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="content-user-x">
+                    <div class="icon">
+                      <i class="fas fa-chevron-left"></i>
+                      <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="text-as">
+                      <div class="name-title">
+                        <p>Nombre de usuario</p>
+                      </div>
+                      <div class="name">
+                        <p class="user-info-title">Superadmin</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="content-user-x">
+                    <div class="icon">
+                      <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="text-as">
+                      <div class="name-title">
+                        <p>Rol</p>
+                      </div>
+                      <div class="name">
+                        <p class="user-info-title">Superadmin</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="content-user-x">
+                    <div class="icon">
+                      <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="text-as">
+                      <div class="name-title">
+                        <p>Fecha de creacion</p>
+                      </div>
+                      <div class="name">
+                        <p class="user-info-title">9 jul. 2019</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!--Container's right side-->
+            <div class="user-info-right">
+              <div class="user-avatar">
+                <img src="../../src/images/avatar.svg" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Footer-->
+        <footer>
+          <hr />
+
+          <p>Bingo RED. Hecho por Victor Escalona para Progracol</p>
+        </footer>
       </div>
     </div>
+    <script
+      src="https://kit.fontawesome.com/c7c21d079c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function openNav() {
+        document.getElementById("left-navbar").style.width = "300px";
+        document.getElementById("main").style.marginLeft = "300px";
+      }
 
-    <div id="main">
-      <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
-    </div>
-
-    <script src="scripts.js"></script>
+      function closeNav() {
+        document.getElementById("left-navbar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+    </script>
   </body>
 </html>
