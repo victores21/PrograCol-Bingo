@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="mySidebar" class="sidebar">
+      <div class="logo">
+        <img src="../../src/images/bingo-logo.png" alt="" />
+      </div>
+      <!--Button-->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <!--Links-->
+      <div class="navbar-links">
+        <ul>
+          <li id="super-admin-span">
+            <a href=""><span>Super Admin</span></a>
+          </li>
+          <li>
+            <a href=""><i class="fas fa-address-book"></i>Mi Perfil</a>
+          </li>
+          <li id="figures">
+            <a href=""><i class="fas fa-th"></i>Figuras y Modalidades</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="main">
+      <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
