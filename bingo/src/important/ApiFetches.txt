@@ -1,0 +1,69 @@
+  useEffect(() => {
+    const validateUser = async () => {
+      var raw = `{\n	\"username\": \"${username}\",\n	\"password\": \"${password}\"\n}`;
+
+      var requestOptions = {
+        method: "POST",
+        body: raw,
+        redirect: "follow",
+      };
+
+      const req = await fetch(
+        "http://186.147.125.7:8080/user-0.0.1-SNAPSHOT/auth",
+        requestOptions
+      );
+      const res = await req.json();
+      setToken(res.Authorization);
+      setLoading(false);
+    };
+    //Profile
+    if (token !== undefined) {
+      const getProfile = async () => {
+        var bearer = token;
+        console.log("Bearer from function token", bearer);
+        var requestOptions = {
+          method: "GET",
+          redirect: "follow",
+          withCredentials: true,
+          credentials: "include",
+          headers: {
+            Authorization: bearer,
+            "Content-type": "application/json",
+          },
+        };
+
+        const req = await fetch(
+          "http://186.147.125.7:8080/user-0.0.1-SNAPSHOT/myprofile",
+          requestOptions
+        )
+        const res = await req.json();
+        console.log(await res);
+      }
+      getProfile();
+
+    }
+
+    //GetAllpaged
+    const getAllPaged = async () => {
+      var bearer = token;
+      console.log("Bearer from function GetAllPaged", bearer);
+      var requestOptions = {
+        method: "GET",
+        redirect: "follow",
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+          Authorization: bearer,
+          "Content-type": "application/json",
+        },
+      };
+
+      const req = await fetch("http://186.147.125.7:8080/game-0.0.1-SNAPSHOT/figure/paged?size=20&page=0", requestOptions)
+      const res = await req.json();
+      console.log(res);
+    }
+
+    getAllPaged();
+
+    validateUser();
+  }, [loading]);
