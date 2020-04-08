@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Add Figure</title>
+  </head>
+  <body>
+    <div class="addFigures-container">
+      <div class="left-navbar" id="left-navbar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          >&times;</a
+        >
+        <div class="logo">
+          <img src="../../src/images/bingo-logo.png" alt="" />
+        </div>
+        <div class="navbar-links">
+          <ul>
+            <li id="super-admin-span">
+              <a href=""><span>Super Admin</span></a>
+            </li>
+            <li>
+              <a href=""><i class="fas fa-address-book"></i>Mi Perfil</a>
+            </li>
+            <li id="figures">
+              <a href=""><i class="fas fa-th"></i>Figuras y Modalidades</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="main">
+        <!--Top navbar-->
+        <div class="top-navbar">
+          <div class="hamburguer">
+            <i class="fas fa-bars openbtn" onclick="openNav()"></i>
+          </div>
+          <div class="title-top-navbar">
+            <p>Sala Verano 22</p>
+          </div>
+          <div class="user-icon">
+            <!--Dropdown-->
+            <div class="simplemenu">
+              <i class="fas fa-user-alt" onclick="mobileMenuOpen()"></i>
+              <ul id="gmDropdown" class="dropdown-content">
+                <li id="dropdown-name">Superadmin, Michael</li>
+                <hr />
+                <li>
+                  <a href="#home"><i class="fas fa-id-badge"></i> Perfil</a>
+                </li>
+                <li>
+                  <a href="#about"
+                    ><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!--Main Content-->
+        <div class="addFigure">
+          <div class="add-figure-info">
+            <!--Back Button-->
+            <div class="back-button">
+              <button><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <!--Select Modality-->
+            <div class="select-modality">
+              <label for="modality-label">Elegir Modalidad</label>
+
+              <select id="modality-select">
+                <option value="volvo">LINEAL</option>
+                <option value="saab">LLENO</option>
+                <option value="opel">LLENO SEGUNDA</option>
+                <option value="audi">FIGURA</option>
+                <option value="audi">MEDIO LLENO</option>
+                <option value="audi">T Y T AL REVES</option>
+              </select>
+            </div>
+            <!--Title-->
+            <div class="card-title-add">
+              <p>Añadir nueva</p>
+              <p>figura</p>
+            </div>
+            <!--Card-->
+            <div class="card-add">
+              <div class="add-figure-title">
+                <input
+                  type="text"
+                  name="add-title"
+                  id="add-title"
+                  placeholder="Nombre de figura"
+                />
+              </div>
+              <div class="add-square">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+              </div>
+              <div class="save-button">
+                <button>Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Footer-->
+        <footer>
+          <hr />
+
+          <p>Bingo RED. Hecho por Victor Escalona para Progracol</p>
+        </footer>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/c7c21d079c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
