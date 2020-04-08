@@ -23,3 +23,9 @@ if (window.matchMedia("(max-width: 900px)").matches) {
 } else {
   /* The viewport is greater than 700 pixels wide */
 }
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function mobileMenuOpen() {
+  document.getElementById("gmDropdown").classList.toggle("show");
+}
