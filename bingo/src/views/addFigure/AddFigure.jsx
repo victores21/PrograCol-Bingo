@@ -3,6 +3,7 @@ import "./AddFigure.css";
 import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
 const AddFigure = () => {
   return (
     <>
@@ -18,9 +19,11 @@ const AddFigure = () => {
             <div class="add-figure-info">
               {/* <!--Back Button--> */}
               <div class="back-button">
-                <button>
-                  <i class="fas fa-arrow-left"></i>
-                </button>
+                <Link to="/figures">
+                  <button>
+                    <i class="fas fa-arrow-left"></i>
+                  </button>
+                </Link>
               </div>
               {/* <!--Select Modality--> */}
               <div class="select-modality">

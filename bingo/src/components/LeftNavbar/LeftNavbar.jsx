@@ -8,32 +8,30 @@ const LeftNavbar = () => {
     document.getElementById("main").style.marginLeft = "0";
   };
   return (
-    <div class="left-navbar" id="left-navbar">
+    <div className="left-navbar" id="left-navbar">
       <a
         href="javascript:void(0)"
-        class="closebtn"
+        className="closebtn"
         onClick={() => closeNavHandler()}
       >
         &times;
       </a>
-      <div class="logo">
+      <div className="logo">
         <img src={logo} alt="" />
       </div>
-      <div class="navbar-links">
+      <div className="navbar-links">
         <ul>
           <li id="super-admin-span">
-            <a href="">
-              <span>Super Admin</span>
-            </a>
+            <span>Super Admin</span>
           </li>
           <li>
             <Link to="/profile">
-              <i class="fas fa-address-book"></i>Mi Perfil
+              <i className="fas fa-address-book"></i>Mi Perfil
             </Link>
           </li>
           <li id="figures">
             <Link to="/figures">
-              <i class="fas fa-th"></i>Figuras y Modalidades
+              <i className="fas fa-th"></i>Figuras y Modalidades
             </Link>
           </li>
         </ul>

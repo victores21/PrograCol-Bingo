@@ -5,10 +5,11 @@ import Footer from "../../components/Footer/Footer";
 import "./FiguresList.css";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
 import "@reach/tabs/styles.css";
+import { Link } from "react-router-dom";
 
 const FiguresList = () => {
   return (
-    <div class="allFigures-container">
+    <div className="allFigures-container">
       {/*Left Navbar */}
       <LeftNavbar />
       <div id="main">
@@ -17,8 +18,8 @@ const FiguresList = () => {
 
         {/* <!--Main Content--> */}
 
-        <div class="all-figures-container">
-          <div class="all-figure-info">
+        <div className="all-figures-container">
+          <div className="all-figure-info">
             <Tabs>
               <TabList>
                 <Tab>
@@ -27,234 +28,51 @@ const FiguresList = () => {
                 <Tab>Lista con Modalidades</Tab>
               </TabList>
               {/* <!--Add new figure button--> */}
-              <div class="add-figure-button">
-                <button>+</button>
+              <div className="add-figure-button">
+                <Link to="/figures/add">
+                  <button>+</button>
+                </Link>
               </div>
               <TabPanels>
                 {/*First Tab (Lista con figuras tab) */}
                 <TabPanel>
                   {/* <!--All figures list--> */}
-                  <div class="figures">
+                  <div className="figures">
                     <ul>
                       <li>
-                        <div class="figure-card">
-                          <div class="card-title">
+                        <div className="figure-card">
+                          <div className="card-title">
                             <p>Horizontal-1</p>
                           </div>
-                          <div class="close-card">
+                          <div className="close-card">
                             <p>X</p>
                           </div>
-                          <div class="figure-square-card">
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="figure-card">
-                          <div class="card-title">
-                            <p>Horizontal-1</p>
-                          </div>
-                          <div class="close-card">
-                            <p>X</p>
-                          </div>
-                          <div class="figure-square-card">
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="figure-card">
-                          <div class="card-title">
-                            <p>Horizontal-1</p>
-                          </div>
-                          <div class="close-card">
-                            <p>X</p>
-                          </div>
-                          <div class="figure-square-card">
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="figure-card">
-                          <div class="card-title">
-                            <p>Horizontal-1</p>
-                          </div>
-                          <div class="close-card">
-                            <p>X</p>
-                          </div>
-                          <div class="figure-square-card">
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="figure-card">
-                          <div class="card-title">
-                            <p>Horizontal-1</p>
-                          </div>
-                          <div class="close-card">
-                            <p>X</p>
-                          </div>
-                          <div class="figure-square-card">
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="figure-card">
-                          <div class="card-title">
-                            <p>Horizontal-1</p>
-                          </div>
-                          <div class="close-card">
-                            <p>X</p>
-                          </div>
-                          <div class="figure-square-card">
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
-                            <div class="square"></div>
+                          <div className="figure-square-card">
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
+                            <div className="square"></div>
                           </div>
                         </div>
                       </li>
@@ -266,90 +84,92 @@ const FiguresList = () => {
                 <TabPanel>
                   <div className="modality-list">
                     <table>
-                      <tr>
-                        <th>Nombre de Modalidad</th>
-                        <th>Oportunidad</th>
-                        <th>Cerrar al lanzar</th>
-                        <th>Acciones</th>
-                      </tr>
-                      <tr>
-                        <td>LINEAL</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>
-                          <a href="">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="">
-                            <i class="fas fa-times"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>LLENO</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>
-                          <a href="">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="">
-                            <i class="fas fa-times"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>LLENO SEGUNDA</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>
-                          <a href="">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="">
-                            <i class="fas fa-times"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>FIGURA</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>
-                          <a href="">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="">
-                            <i class="fas fa-times"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>MEDIO LLENO</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>
-                          <a href="">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="">
-                            <i class="fas fa-times"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>T Y T AL REVES</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>
-                          <a href="">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="">
-                            <i class="fas fa-times"></i>
-                          </a>
-                        </td>
-                      </tr>
+                      <tbody>
+                        <tr>
+                          <th>Nombre de Modalidad</th>
+                          <th>Oportunidad</th>
+                          <th>Cerrar al lanzar</th>
+                          <th>Acciones</th>
+                        </tr>
+                        <tr>
+                          <td>LINEAL</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>
+                            <Link to="/edit">
+                              <i className="fas fa-pencil-alt"></i>
+                            </Link>
+                            <Link to="/delete/:id">
+                              <i className="fas fa-times"></i>
+                            </Link>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>LLENO</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>
+                            <Link to="/">
+                              <i className="fas fa-pencil-alt"></i>
+                            </Link>
+                            <Link to="/">
+                              <i className="fas fa-times"></i>
+                            </Link>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>LLENO SEGUNDA</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>
+                            <Link to="/">
+                              <i className="fas fa-pencil-alt"></i>
+                            </Link>
+                            <Link to="/">
+                              <i className="fas fa-times"></i>
+                            </Link>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>FIGURA</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>
+                            <Link to="/">
+                              <i className="fas fa-pencil-alt"></i>
+                            </Link>
+                            <Link to="/">
+                              <i className="fas fa-times"></i>
+                            </Link>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>MEDIO LLENO</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>
+                            <Link to="/">
+                              <i className="fas fa-pencil-alt"></i>
+                            </Link>
+                            <Link to="/">
+                              <i className="fas fa-times"></i>
+                            </Link>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>T Y T AL REVES</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>
+                            <Link to="/">
+                              <i className="fas fa-pencil-alt"></i>
+                            </Link>
+                            <Link to="/">
+                              <i className="fas fa-times"></i>
+                            </Link>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                 </TabPanel>

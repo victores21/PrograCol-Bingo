@@ -4,6 +4,7 @@ import avatar from "../../images/avatar.svg";
 import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   return (
@@ -16,9 +17,11 @@ const Profile = () => {
         {/* <!--User Info--> */}
         <div className="user-info">
           <div className="back-button">
-            <button>
-              <i className="fas fa-arrow-left"></i>
-            </button>
+            <Link to="/figures">
+              <button>
+                <i className="fas fa-arrow-left"></i>
+              </button>
+            </Link>
           </div>
           {/* <!--Container user--> */}
           <div className="user-info-container">
