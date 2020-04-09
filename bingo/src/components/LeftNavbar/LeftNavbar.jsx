@@ -1,7 +1,7 @@
 import React from "react";
 import "./LeftNavbar.css";
 import logo from "../../images/bingo-logo.png";
-
+import { Link } from "react-router-dom";
 const LeftNavbar = () => {
   const closeNavHandler = () => {
     document.getElementById("left-navbar").style.width = "0";
@@ -27,14 +27,14 @@ const LeftNavbar = () => {
             </a>
           </li>
           <li>
-            <a href="">
+            <Link to="/profile">
               <i class="fas fa-address-book"></i>Mi Perfil
-            </a>
+            </Link>
           </li>
           <li id="figures">
-            <a href="">
+            <Link to="/figures">
               <i class="fas fa-th"></i>Figuras y Modalidades
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

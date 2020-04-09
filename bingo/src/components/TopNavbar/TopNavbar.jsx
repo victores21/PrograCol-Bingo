@@ -1,5 +1,6 @@
 import React from "react";
 import "./TopNavbar.css";
+import { Link } from "react-router-dom";
 
 const TopNavbar = () => {
   //Open LeftNavbarHandler
@@ -33,14 +34,14 @@ const TopNavbar = () => {
             <li id="dropdown-name">Superadmin, Michael</li>
             <hr />
             <li>
-              <a href="#home">
+              <Link to="/profile">
                 <i className="fas fa-id-badge"></i> Perfil
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#about">
+              <Link to="/logout">
                 <i className="fas fa-sign-out-alt"></i> Cerrar Sesion
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
