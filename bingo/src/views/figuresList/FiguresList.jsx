@@ -6,6 +6,7 @@ import "./FiguresList.css";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
 import "@reach/tabs/styles.css";
 import { Link } from "react-router-dom";
+import { IsLoggedIn } from "../../components/IsLoggedIn/IsLoggedIn";
 
 const FiguresList = () => {
   return (
