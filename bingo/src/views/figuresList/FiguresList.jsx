@@ -59,6 +59,29 @@ const FiguresList = () => {
       const res = await req.json();
       setModalities(res.data);
     };
+
+    /*     //Delete Method
+    const deleteFigure =async ()=>{
+      var bearerToken = localStorage.getItem("Bearer Token");
+      var requestOptions = {
+        method: "DELETE",
+        redirect: "follow",
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+          Authorization: bearerToken,
+          "Content-type": "application/json",
+        },
+      };
+      var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      };
+      
+      const req = await fetch("http://186.147.125.7:8080/game-0.0.1-SNAPSHOT/figure/:id", requestOptions)
+      const res = await req.json();
+      console.log(res);
+    } */
     getFigures();
     getModalities();
   }, []);
@@ -104,7 +127,9 @@ const FiguresList = () => {
                                   <p>{figureInfo.name}</p>
                                 </div>
                                 <div className="close-card">
-                                  <p>X</p>
+                                  <p>
+                                    <Link>X</Link>
+                                  </p>
                                 </div>
                                 <div className="figure-square-card">
                                   {figureInfo.positionsWinner.map(

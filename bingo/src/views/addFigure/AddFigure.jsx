@@ -4,11 +4,8 @@ import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
-import { TokenContext } from "../../context/TokenContext";
 import { IsLoggedIn } from "../../components/IsLoggedIn/IsLoggedIn";
 const AddFigure = () => {
-  const { token } = useContext(TokenContext);
-
   return (
     <>
       <div className="addFigures-container">
@@ -17,7 +14,6 @@ const AddFigure = () => {
         <div id="main">
           {/* <!--Top navbar--> */}
           <TopNavbar />
-          {console.log(token)}
 
           {/* <!--Main Content--> */}
           <div className="addFigure">
