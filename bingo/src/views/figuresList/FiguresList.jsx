@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
@@ -9,6 +9,60 @@ import { Link } from "react-router-dom";
 import { IsLoggedIn } from "../../components/IsLoggedIn/IsLoggedIn";
 
 const FiguresList = () => {
+  const [figures, setFigures] = useState();
+  const [modalities, setModalities] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    //First Tab
+    const getFigures = async () => {
+      var bearerToken = localStorage.getItem("Bearer Token");
+      var requestOptions = {
+        method: "GET",
+        redirect: "follow",
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+          Authorization: bearerToken,
+          "Content-type": "application/json",
+        },
+      };
+
+      const req = await fetch(
+        "http://186.147.125.7:8080/game-0.0.1-SNAPSHOT/figure",
+        requestOptions
+      );
+      const res = await req.json();
+      console.log(res);
+      setFigures(res.data);
+      setLoading(false);
+    };
+
+    //Second Tab
+    const getModalities = async () => {
+      var bearerToken = localStorage.getItem("Bearer Token");
+      var requestOptions = {
+        method: "GET",
+        redirect: "follow",
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+          Authorization: bearerToken,
+          "Content-type": "application/json",
+        },
+      };
+
+      const req = await fetch(
+        "http://186.147.125.7:8080/game-0.0.1-SNAPSHOT/groupfigure",
+        requestOptions
+      );
+      const res = await req.json();
+      setModalities(res.data);
+    };
+    getFigures();
+    getModalities();
+  }, []);
+
   return (
     <div className="allFigures-container">
       {/*Left Navbar */}
@@ -40,43 +94,34 @@ const FiguresList = () => {
                   {/* <!--All figures list--> */}
                   <div className="figures">
                     <ul>
-                      <li>
-                        <div className="figure-card">
-                          <div className="card-title">
-                            <p>Horizontal-1</p>
-                          </div>
-                          <div className="close-card">
-                            <p>X</p>
-                          </div>
-                          <div className="figure-square-card">
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                            <div className="square"></div>
-                          </div>
-                        </div>
-                      </li>
+                      {/* AllFigures card*/}
+                      {loading
+                        ? console.log("Loading...")
+                        : figures.map((figureInfo) => (
+                            <li>
+                              <div className="figure-card">
+                                <div className="card-title">
+                                  <p>{figureInfo.name}</p>
+                                </div>
+                                <div className="close-card">
+                                  <p>X</p>
+                                </div>
+                                <div className="figure-square-card">
+                                  {figureInfo.positionsWinner.map(
+                                    (positionWinner) => (
+                                      <div
+                                        className={
+                                          positionWinner
+                                            ? "square-blue"
+                                            : "square-gray"
+                                        }
+                                      ></div>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            </li>
+                          ))}
                     </ul>
                   </div>
                 </TabPanel>
@@ -84,6 +129,7 @@ const FiguresList = () => {
                 {/*Second Tab (Lista con modalidades) */}
                 <TabPanel>
                   <div className="modality-list">
+                    {loading ? "..." : console.log(modalities)}
                     <table>
                       <tbody>
                         <tr>
@@ -92,84 +138,23 @@ const FiguresList = () => {
                           <th>Cerrar al lanzar</th>
                           <th>Acciones</th>
                         </tr>
-                        <tr>
-                          <td>LINEAL</td>
-                          <td>1</td>
-                          <td>1</td>
-                          <td>
-                            <Link to="/edit">
-                              <i className="fas fa-pencil-alt"></i>
-                            </Link>
-                            <Link to="/delete/:id">
-                              <i className="fas fa-times"></i>
-                            </Link>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>LLENO</td>
-                          <td>1</td>
-                          <td>1</td>
-                          <td>
-                            <Link to="/">
-                              <i className="fas fa-pencil-alt"></i>
-                            </Link>
-                            <Link to="/">
-                              <i className="fas fa-times"></i>
-                            </Link>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>LLENO SEGUNDA</td>
-                          <td>1</td>
-                          <td>1</td>
-                          <td>
-                            <Link to="/">
-                              <i className="fas fa-pencil-alt"></i>
-                            </Link>
-                            <Link to="/">
-                              <i className="fas fa-times"></i>
-                            </Link>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>FIGURA</td>
-                          <td>1</td>
-                          <td>1</td>
-                          <td>
-                            <Link to="/">
-                              <i className="fas fa-pencil-alt"></i>
-                            </Link>
-                            <Link to="/">
-                              <i className="fas fa-times"></i>
-                            </Link>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>MEDIO LLENO</td>
-                          <td>1</td>
-                          <td>1</td>
-                          <td>
-                            <Link to="/">
-                              <i className="fas fa-pencil-alt"></i>
-                            </Link>
-                            <Link to="/">
-                              <i className="fas fa-times"></i>
-                            </Link>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>T Y T AL REVES</td>
-                          <td>1</td>
-                          <td>1</td>
-                          <td>
-                            <Link to="/">
-                              <i className="fas fa-pencil-alt"></i>
-                            </Link>
-                            <Link to="/">
-                              <i className="fas fa-times"></i>
-                            </Link>
-                          </td>
-                        </tr>
+                        {loading
+                          ? console.log("Loading...")
+                          : modalities.map((modality) => (
+                              <tr>
+                                <td>{modality.name}</td>
+                                <td>{modality.opportunity}</td>
+                                <td>{modality.closeAt}</td>
+                                <td>
+                                  <Link to="/edit">
+                                    <i className="fas fa-pencil-alt"></i>
+                                  </Link>
+                                  <Link to="/delete/:id">
+                                    <i className="fas fa-times"></i>
+                                  </Link>
+                                </td>
+                              </tr>
+                            ))}
                       </tbody>
                     </table>
                   </div>

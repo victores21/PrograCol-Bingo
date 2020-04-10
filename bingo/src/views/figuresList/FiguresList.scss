@@ -125,9 +125,13 @@
                   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
                   grid-template-rows: 30px 30px 30px 30px 30px;
                   grid-gap: 5px;
-
-                  .square {
+                  .square-gray {
                     background: #c2c2c2;
+                    border-radius: 5px;
+                    padding: 2px;
+                  }
+                  .square-blue {
+                    background: rgb(110, 203, 219);
                     border-radius: 5px;
                     padding: 2px;
                   }
