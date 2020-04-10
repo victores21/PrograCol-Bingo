@@ -98,7 +98,7 @@ const FiguresList = () => {
                       {loading
                         ? console.log("Loading...")
                         : figures.map((figureInfo) => (
-                            <li>
+                            <li key={figureInfo.id}>
                               <div className="figure-card">
                                 <div className="card-title">
                                   <p>{figureInfo.name}</p>
@@ -108,8 +108,9 @@ const FiguresList = () => {
                                 </div>
                                 <div className="figure-square-card">
                                   {figureInfo.positionsWinner.map(
-                                    (positionWinner) => (
+                                    (positionWinner, index) => (
                                       <div
+                                        key={index}
                                         className={
                                           positionWinner
                                             ? "square-blue"
@@ -141,7 +142,7 @@ const FiguresList = () => {
                         {loading
                           ? console.log("Loading...")
                           : modalities.map((modality) => (
-                              <tr>
+                              <tr key={modality.id}>
                                 <td>{modality.name}</td>
                                 <td>{modality.opportunity}</td>
                                 <td>{modality.closeAt}</td>
