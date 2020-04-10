@@ -70,7 +70,7 @@ const Profile = () => {
                             <p>Nombre</p>
                           </div>
                           <div className="name">
-                            <p className="user-info-title">Superadmin</p>
+                            <p className="user-info-title">...</p>
                           </div>
                         </div>
                       </div>
@@ -85,7 +85,7 @@ const Profile = () => {
                             <p>Apellidos</p>
                           </div>
                           <div className="name">
-                            <p className="user-info-title">Michael</p>
+                            <p className="user-info-title">...</p>
                           </div>
                         </div>
                       </div>
@@ -101,7 +101,7 @@ const Profile = () => {
                             <p>Nombre de usuario</p>
                           </div>
                           <div className="name">
-                            <p className="user-info-title">Superadmin</p>
+                            <p className="user-info-title">...</p>
                           </div>
                         </div>
                       </div>
@@ -116,7 +116,7 @@ const Profile = () => {
                             <p>Rol</p>
                           </div>
                           <div className="name">
-                            <p className="user-info-title">Superadmin</p>
+                            <p className="user-info-title">...</p>
                           </div>
                         </div>
                       </div>
@@ -131,7 +131,7 @@ const Profile = () => {
                             <p>Fecha de creacion</p>
                           </div>
                           <div className="name">
-                            <p className="user-info-title">9 jul. 2019</p>
+                            <p className="user-info-title">...</p>
                           </div>
                         </div>
                       </div>
