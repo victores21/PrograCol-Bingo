@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Profile.css";
 import avatar from "../../images/avatar.svg";
 import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
@@ -7,6 +7,35 @@ import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
+  const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const getProfile = async () => {
+      var bearerToken = localStorage.getItem("Bearer Token");
+      //Getting the token
+      console.log("Bearer from function token", bearerToken);
+      var requestOptions = {
+        method: "GET",
+        redirect: "follow",
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+          Authorization: bearerToken,
+          "Content-type": "application/json",
+        },
+      };
+
+      const req = await fetch(
+        "http://186.147.125.7:8080/user-0.0.1-SNAPSHOT/myprofile",
+        requestOptions
+      );
+      const res = await req.json();
+      setUser(res.data);
+      setLoading(false);
+    };
+    getProfile();
+  }, []);
+  console.log(user);
   return (
     <div className="profile-container">
       {/*LeftNavbar */}
@@ -28,82 +57,170 @@ const Profile = () => {
             {/* <!--Container's left side--> */}
             <div className="user-info-left">
               <ul>
-                <li>
-                  <div className="content-user-x">
-                    <div className="icon">
-                      <i className="fas fa-user-alt"></i>
-                    </div>
-                    <div className="text-as">
-                      <div className="name-title">
-                        <p>Nombre</p>
+                {loading ? (
+                  <>
+                    <li>
+                      <div className="content-user-x">
+                        <div className="icon">
+                          <i className="fas fa-user-alt"></i>
+                        </div>
+
+                        <div className="text-as">
+                          <div className="name-title">
+                            <p>Nombre</p>
+                          </div>
+                          <div className="name">
+                            <p className="user-info-title">Superadmin</p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="name">
-                        <p className="user-info-title">Superadmin</p>
+                    </li>
+                    <li>
+                      <div className="content-user-x">
+                        <div className="icon">
+                          <i className="fas fa-user-friends"></i>
+                        </div>
+                        <div className="text-as">
+                          <div className="name-title">
+                            <p>Apellidos</p>
+                          </div>
+                          <div className="name">
+                            <p className="user-info-title">Michael</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="content-user-x">
-                    <div className="icon">
-                      <i className="fas fa-user-friends"></i>
-                    </div>
-                    <div className="text-as">
-                      <div className="name-title">
-                        <p>Apellidos</p>
+                    </li>
+                    <li>
+                      <div className="content-user-x">
+                        <div className="icon">
+                          <i className="fas fa-chevron-left"></i>
+                          <i className="fas fa-chevron-right"></i>
+                        </div>
+                        <div className="text-as">
+                          <div className="name-title">
+                            <p>Nombre de usuario</p>
+                          </div>
+                          <div className="name">
+                            <p className="user-info-title">Superadmin</p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="name">
-                        <p className="user-info-title">Michael</p>
+                    </li>
+                    <li>
+                      <div className="content-user-x">
+                        <div className="icon">
+                          <i className="fas fa-couch"></i>
+                        </div>
+                        <div className="text-as">
+                          <div className="name-title">
+                            <p>Rol</p>
+                          </div>
+                          <div className="name">
+                            <p className="user-info-title">Superadmin</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="content-user-x">
-                    <div className="icon">
-                      <i className="fas fa-chevron-left"></i>
-                      <i className="fas fa-chevron-right"></i>
-                    </div>
-                    <div className="text-as">
-                      <div className="name-title">
-                        <p>Nombre de usuario</p>
+                    </li>
+                    <li>
+                      <div className="content-user-x">
+                        <div className="icon">
+                          <i className="fas fa-calendar-alt"></i>
+                        </div>
+                        <div className="text-as">
+                          <div className="name-title">
+                            <p>Fecha de creacion</p>
+                          </div>
+                          <div className="name">
+                            <p className="user-info-title">9 jul. 2019</p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="name">
-                        <p className="user-info-title">Superadmin</p>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <li>
+                      <div className="content-user-x">
+                        <div className="icon">
+                          <i className="fas fa-user-alt"></i>
+                        </div>
+
+                        <div className="text-as">
+                          <div className="name-title">
+                            <p>Nombre</p>
+                          </div>
+                          <div className="name">
+                            <p className="user-info-title">{user.names}</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="content-user-x">
-                    <div className="icon">
-                      <i className="fas fa-couch"></i>
-                    </div>
-                    <div className="text-as">
-                      <div className="name-title">
-                        <p>Rol</p>
+                    </li>
+                    <li>
+                      <div className="content-user-x">
+                        <div className="icon">
+                          <i className="fas fa-user-friends"></i>
+                        </div>
+                        <div className="text-as">
+                          <div className="name-title">
+                            <p>Apellidos</p>
+                          </div>
+                          <div className="name">
+                            <p className="user-info-title">{user.lastNames}</p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="name">
-                        <p className="user-info-title">Superadmin</p>
+                    </li>
+                    <li>
+                      <div className="content-user-x">
+                        <div className="icon">
+                          <i className="fas fa-chevron-left"></i>
+                          <i className="fas fa-chevron-right"></i>
+                        </div>
+                        <div className="text-as">
+                          <div className="name-title">
+                            <p>Nombre de usuario</p>
+                          </div>
+                          <div className="name">
+                            <p className="user-info-title">{user.username}</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="content-user-x">
-                    <div className="icon">
-                      <i className="fas fa-calendar-alt"></i>
-                    </div>
-                    <div className="text-as">
-                      <div className="name-title">
-                        <p>Fecha de creacion</p>
+                    </li>
+                    <li>
+                      <div className="content-user-x">
+                        <div className="icon">
+                          <i className="fas fa-couch"></i>
+                        </div>
+                        <div className="text-as">
+                          <div className="name-title">
+                            <p>Rol</p>
+                          </div>
+                          <div className="name">
+                            <p className="user-info-title">
+                              {user.rolDTO.name}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="name">
-                        <p className="user-info-title">9 jul. 2019</p>
+                    </li>
+                    <li>
+                      <div className="content-user-x">
+                        <div className="icon">
+                          <i className="fas fa-calendar-alt"></i>
+                        </div>
+                        <div className="text-as">
+                          <div className="name-title">
+                            <p>Fecha de creacion</p>
+                          </div>
+                          <div className="name">
+                            <p className="user-info-title">{user.createdAt}</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </li>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
             {/* <!--Container's right side--> */}
