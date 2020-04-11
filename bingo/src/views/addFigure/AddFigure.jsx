@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddFigure.css";
 import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
@@ -6,13 +6,10 @@ import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import { IsLoggedIn } from "../../components/IsLoggedIn/IsLoggedIn";
 const AddFigure = () => {
-  const [active, setActive] = useState(false);
+  //states
+  const [loadingModality, setLoadingModality] = useState(true);
+  const [modalities, setModalities] = useState();
   const [positionsArray, setPositionsArray] = useState([
-    1,
-    0,
-    1,
-    0,
-    1,
     0,
     0,
     0,
@@ -32,11 +29,90 @@ const AddFigure = () => {
     0,
     0,
     0,
-    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
   ]);
-  const handleFigureWinners = (e, array) => {
-    // setPositionsArray([(positionsArray[index] = !positionsArray[index])]);
-    console.log(e.target.value);
+  const [figureName, setFigureName] = useState();
+  const [idFigure, setIdFigure] = useState(1);
+
+  useEffect(() => {
+    const getModalities = async () => {
+      var bearerToken = localStorage.getItem("Bearer Token");
+      var requestOptions = {
+        method: "GET",
+        redirect: "follow",
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+          Authorization: bearerToken,
+          "Content-type": "application/json",
+        },
+      };
+
+      const req = await fetch(
+        "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/groupfigure",
+        requestOptions
+      );
+      const res = await req.json();
+      setModalities(res.data);
+      setLoadingModality(false);
+      console.log("Modality", res);
+    };
+
+    getModalities();
+  }, [setLoadingModality]);
+
+  //handlerBingoCardToggler
+  const handleFigureToggle = (e, index) => {
+    const newArray = [...positionsArray];
+    newArray[index] = newArray[index] === 1 ? 0 : 1;
+    setPositionsArray(newArray);
+  };
+  //Handle Bingo name
+  const handleName = (e) => {
+    setFigureName(e.target.value);
+  };
+  //handle SelectInput
+  const handleSelectInput = (e) => {
+    setIdFigure(e.target.value);
+  };
+  //Add Button
+  const handleAddFigureButton = () => {
+    const postFigure = async () => {
+      try {
+        var bearerToken = localStorage.getItem("Bearer Token");
+        var raw = JSON.stringify({
+          idFigureGroup: idFigure,
+          figureName: figureName,
+          positions: positionsArray,
+        });
+        var requestOptions = {
+          method: "POST",
+          body: raw,
+          redirect: "follow",
+          withCredentials: true,
+          credentials: "include",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: bearerToken,
+          },
+        };
+
+        const req = await fetch(
+          "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/figure",
+          requestOptions
+        );
+        const res = req.json();
+        console.log(res);
+      } catch (error) {
+        console.log("Error");
+      }
+    };
+    postFigure();
   };
   return (
     <>
@@ -62,13 +138,15 @@ const AddFigure = () => {
               <div className="select-modality">
                 <label htmlFor="modality-label">Elegir Modalidad</label>
 
-                <select id="modality-select">
-                  <option value="volvo">LINEAL</option>
-                  <option value="saab">LLENO</option>
-                  <option value="opel">LLENO SEGUNDA</option>
-                  <option value="audi">FIGURA</option>
-                  <option value="audi">MEDIO LLENO</option>
-                  <option value="audi">T Y T AL REVES</option>
+                <select
+                  id="modality-select"
+                  onClick={(e) => handleSelectInput(e)}
+                >
+                  {loadingModality
+                    ? console.log("loading...")
+                    : modalities.map((modality) => (
+                        <option value={modality.id}>{modality.name}</option>
+                      ))}
                 </select>
               </div>
               {/*CARD */}
@@ -77,6 +155,7 @@ const AddFigure = () => {
                 <p>Añadir nueva</p>
                 <p>figura</p>
               </div>
+
               {/* <!--Card--> */}
               <div className="card-add">
                 <div className="add-figure-title">
@@ -85,6 +164,7 @@ const AddFigure = () => {
                     name="add-title"
                     id="add-title"
                     placeholder="Nombre de figura"
+                    onChange={(e) => handleName(e)}
                   />
                 </div>
                 <div className="add-square">
@@ -92,18 +172,18 @@ const AddFigure = () => {
                     <div
                       key={`${position}_${index}`}
                       className={position ? "square-blue" : "square-gray"}
+                      //AQUI PARA CHAVON
+                      //PARAAA
                       onClick={(e) => {
-                        const newArray = [...positionsArray];
-                        newArray[index] = newArray[index] === 1 ? 0 : 1;
-                        setPositionsArray(newArray);
+                        handleFigureToggle(e, index);
                       }}
-                    >
-                      {position}
-                    </div>
+                    ></div>
                   ))}
                 </div>
                 <div className="save-button">
-                  <button>Guardar</button>
+                  <button onClick={(e) => handleAddFigureButton(e)}>
+                    Guardar
+                  </button>
                 </div>
               </div>
             </div>
