@@ -34,7 +34,7 @@ const FiguresList = () => {
         requestOptions
       );
       const res = await req.json();
-      console.log(res);
+      console.log("Lista de figuras", res);
       setFigures(res.data);
       setLoadingFigure(false);
     };
@@ -131,7 +131,7 @@ const FiguresList = () => {
                                 </div>
                                 <div className="close-card">
                                   <p>
-                                    <Link>X</Link>
+                                    <Link to="/delete">X</Link>
                                   </p>
                                 </div>
                                 <div className="figure-square-card">

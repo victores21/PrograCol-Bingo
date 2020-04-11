@@ -7,13 +7,36 @@ import { Link } from "react-router-dom";
 import { IsLoggedIn } from "../../components/IsLoggedIn/IsLoggedIn";
 const AddFigure = () => {
   const [active, setActive] = useState(false);
-
-  const handleClick = (e) => {
-    if (active) {
-      setActive(false);
-    } else {
-      setActive(true);
-    }
+  const [positionsArray, setPositionsArray] = useState([
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+  ]);
+  const handleFigureWinners = (e, array) => {
+    // setPositionsArray([(positionsArray[index] = !positionsArray[index])]);
+    console.log(e.target.value);
   };
   return (
     <>
@@ -48,6 +71,7 @@ const AddFigure = () => {
                   <option value="audi">T Y T AL REVES</option>
                 </select>
               </div>
+              {/*CARD */}
               {/* <!--Title--> */}
               <div className="card-title-add">
                 <p>Añadir nueva</p>
@@ -64,106 +88,19 @@ const AddFigure = () => {
                   />
                 </div>
                 <div className="add-square">
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
-                  <div
-                    className={active ? "square-blue" : "square-gray"}
-                    onClick={(e) => handleClick(e)}
-                  ></div>
+                  {positionsArray.map((position, index) => (
+                    <div
+                      key={`${position}_${index}`}
+                      className={position ? "square-blue" : "square-gray"}
+                      onClick={(e) => {
+                        const newArray = [...positionsArray];
+                        newArray[index] = newArray[index] === 1 ? 0 : 1;
+                        setPositionsArray(newArray);
+                      }}
+                    >
+                      {position}
+                    </div>
+                  ))}
                 </div>
                 <div className="save-button">
                   <button>Guardar</button>
