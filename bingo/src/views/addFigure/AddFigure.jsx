@@ -5,6 +5,8 @@ import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import { IsLoggedIn } from "../../components/IsLoggedIn/IsLoggedIn";
+import { Redirect } from "react-router-dom";
+
 const AddFigure = () => {
   //states
   const [loadingModality, setLoadingModality] = useState(true);
@@ -38,6 +40,7 @@ const AddFigure = () => {
   ]);
   const [figureName, setFigureName] = useState();
   const [idFigure, setIdFigure] = useState(1);
+  const [created, setCreated] = useState(false);
 
   useEffect(() => {
     const getModalities = async () => {
@@ -107,13 +110,19 @@ const AddFigure = () => {
           requestOptions
         );
         const res = req.json();
+        setCreated(true);
         console.log(res);
       } catch (error) {
         console.log("Error");
+        setCreated(false);
       }
     };
     postFigure();
   };
+
+  if (created) {
+    return <Redirect to="/figures" />;
+  }
   return (
     <>
       <div className="addFigures-container">
@@ -149,6 +158,7 @@ const AddFigure = () => {
                       ))}
                 </select>
               </div>
+
               {/*CARD */}
               {/* <!--Title--> */}
               <div className="card-title-add">
