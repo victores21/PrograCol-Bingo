@@ -11,7 +11,8 @@ import { IsLoggedIn } from "../../components/IsLoggedIn/IsLoggedIn";
 const FiguresList = () => {
   const [figures, setFigures] = useState();
   const [modalities, setModalities] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loadingFigure, setLoadingFigure] = useState(true);
+  const [loadingModality, setLoadingModality] = useState(true);
 
   useEffect(() => {
     //First Tab
@@ -29,13 +30,13 @@ const FiguresList = () => {
       };
 
       const req = await fetch(
-        "http://186.147.125.7:8080/game-0.0.1-SNAPSHOT/figure",
+        "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/figure",
         requestOptions
       );
       const res = await req.json();
       console.log(res);
       setFigures(res.data);
-      setLoading(false);
+      setLoadingFigure(false);
     };
 
     //Second Tab
@@ -53,11 +54,13 @@ const FiguresList = () => {
       };
 
       const req = await fetch(
-        "http://186.147.125.7:8080/game-0.0.1-SNAPSHOT/groupfigure",
+        "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/groupfigure",
         requestOptions
       );
       const res = await req.json();
       setModalities(res.data);
+      setLoadingModality(false);
+      console.log("Modality", res);
     };
 
     /*     //Delete Method
@@ -118,7 +121,7 @@ const FiguresList = () => {
                   <div className="figures">
                     <ul>
                       {/* AllFigures card*/}
-                      {loading
+                      {loadingFigure
                         ? console.log("Loading...")
                         : figures.map((figureInfo) => (
                             <li key={figureInfo.id}>
@@ -155,7 +158,6 @@ const FiguresList = () => {
                 {/*Second Tab (Lista con modalidades) */}
                 <TabPanel>
                   <div className="modality-list">
-                    {loading ? "..." : console.log(modalities)}
                     <table>
                       <tbody>
                         <tr>
@@ -164,7 +166,7 @@ const FiguresList = () => {
                           <th>Cerrar al lanzar</th>
                           <th>Acciones</th>
                         </tr>
-                        {loading
+                        {loadingModality
                           ? console.log("Loading...")
                           : modalities.map((modality) => (
                               <tr key={modality.id}>

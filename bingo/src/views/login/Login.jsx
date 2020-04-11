@@ -25,16 +25,22 @@ const Login = () => {
           method: "POST",
           body: raw,
           redirect: "follow",
+          withCredentials: true,
+          credentials: "include",
+          headers: {
+            "Content-type": "application/json",
+          },
         };
 
         //Fetching URL
         const req = await fetch(
-          "http://186.147.125.7:8080/user-0.0.1-SNAPSHOT/auth",
+          "http://staging.bingored.co:8080/userweb-0.0.1-SNAPSHOT/auth",
           requestOptions
         );
         const res = await req.json();
         console.log(await "Res", res);
         //Token Const
+        console.log(res);
         setToken(res.Authorization);
         setLoggedIn(true);
 

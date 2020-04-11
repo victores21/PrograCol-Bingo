@@ -13,7 +13,7 @@ const Profile = () => {
     const getProfile = async () => {
       var bearerToken = localStorage.getItem("Bearer Token");
       //Getting the token
-      console.log("Bearer from function token", bearerToken);
+      /*  console.log("Bearer from function token", bearerToken);
       var requestOptions = {
         method: "GET",
         redirect: "follow",
@@ -26,10 +26,30 @@ const Profile = () => {
       };
 
       const req = await fetch(
-        "http://186.147.125.7:8080/user-0.0.1-SNAPSHOT/myprofile",
+        "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/userweb-0.0.1-SNAPSHOT/myprofile",
         requestOptions
       );
       const res = await req.json();
+      setUser(res.data);
+      setLoading(false);
+      console.log(res); */
+      var requestOptions = {
+        method: "GET",
+        redirect: "follow",
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+          Authorization: bearerToken,
+          "Content-type": "application/json",
+        },
+      };
+
+      const req = await fetch(
+        "http://staging.bingored.co:8080/userweb-0.0.1-SNAPSHOT/myprofile",
+        requestOptions
+      );
+      const res = await req.json();
+      console.log(res);
       setUser(res.data);
       setLoading(false);
     };
@@ -38,6 +58,7 @@ const Profile = () => {
   console.log(user);
   return (
     <div className="profile-container">
+      {console.log("User is", user)}
       {/*LeftNavbar */}
       <LeftNavbar />
       <div id="main">

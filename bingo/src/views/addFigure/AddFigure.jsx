@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./AddFigure.css";
 import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
@@ -6,6 +6,15 @@ import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import { IsLoggedIn } from "../../components/IsLoggedIn/IsLoggedIn";
 const AddFigure = () => {
+  const [active, setActive] = useState(false);
+
+  const handleClick = (e) => {
+    if (active) {
+      setActive(false);
+    } else {
+      setActive(true);
+    }
+  };
   return (
     <>
       <div className="addFigures-container">
@@ -55,31 +64,106 @@ const AddFigure = () => {
                   />
                 </div>
                 <div className="add-square">
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
-                  <div className="square"></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
+                  <div
+                    className={active ? "square-blue" : "square-gray"}
+                    onClick={(e) => handleClick(e)}
+                  ></div>
                 </div>
                 <div className="save-button">
                   <button>Guardar</button>
