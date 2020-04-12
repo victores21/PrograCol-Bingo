@@ -6,37 +6,19 @@ import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import { getProfile } from "../../api";
 
 const Profile = () => {
   const userContext = useContext(UserContext);
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const getProfile = async () => {
-      var bearerToken = userContext.token;
-      var token = localStorage.getItem("Token");
-
-      var requestOptions = {
-        method: "GET",
-        redirect: "follow",
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          Authorization: token,
-          "Content-type": "application/json",
-        },
-      };
-
-      const req = await fetch(
-        "http://staging.bingored.co:8080/userweb-0.0.1-SNAPSHOT/myprofile",
-        requestOptions
-      );
-      const res = await req.json();
-      userContext.getUserData(res.data.names, res.data.lastNames);
-      setUser(res.data);
+    //Getting the User profile
+    getProfile().then((user) => {
+      setUser(user.data);
       setLoading(false);
-    };
-    getProfile();
+      userContext.getUserData(user.data.names, user.data.lastNames);
+    });
   }, []);
 
   return (

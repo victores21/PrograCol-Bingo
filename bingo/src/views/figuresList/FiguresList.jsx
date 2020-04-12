@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
@@ -7,7 +7,7 @@ import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
 import "@reach/tabs/styles.css";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import { useContext } from "react";
+import { getFigures, getModalities } from "../../api";
 
 const FiguresList = () => {
   const userContext = useContext(UserContext);
@@ -17,57 +17,18 @@ const FiguresList = () => {
   const [loadingModality, setLoadingModality] = useState(true);
 
   useEffect(() => {
-    //First Tab
-    const getFigures = async () => {
-      var token = localStorage.getItem("Token");
-      var requestOptions = {
-        method: "GET",
-        redirect: "follow",
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          Authorization: token,
-          "Content-type": "application/json",
-        },
-      };
-
-      const req = await fetch(
-        "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/figure",
-        requestOptions
-      );
-      const res = await req.json();
-      console.log("Lista de figuras", res);
-      setFigures(res.data);
+    //First Tab (fetching the figure list)
+    getFigures().then((figureList) => {
+      setFigures(figureList.data);
       setLoadingFigure(false);
-    };
+    });
 
     //Second Tab
-    const getModalities = async () => {
-      var token = localStorage.getItem("Token");
 
-      var requestOptions = {
-        method: "GET",
-        redirect: "follow",
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          Authorization: token,
-          "Content-type": "application/json",
-        },
-      };
-
-      const req = await fetch(
-        "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/groupfigure",
-        requestOptions
-      );
-      const res = await req.json();
-      setModalities(res.data);
+    getModalities().then((modalitiesList) => {
+      setModalities(modalitiesList.data);
       setLoadingModality(false);
-      console.log("Modality", res);
-    };
-
-    getFigures();
-    getModalities();
+    });
   }, []);
 
   return (

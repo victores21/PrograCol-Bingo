@@ -18,7 +18,7 @@ const Login = () => {
   //Submit handler
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    //Login Function
     AuthLogin(data.email, data.password).then((data) => {
       const token = data.Authorization;
       localStorage.setItem("Token", token);
