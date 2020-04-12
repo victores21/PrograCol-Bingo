@@ -4,7 +4,7 @@ import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
 import "./EditFigure.css";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect, Link } from "react-router-dom";
 
 const EditFigure = () => {
   const userContext = useContext(UserContext);
@@ -117,9 +117,11 @@ const EditFigure = () => {
             <div className="edit-figure-info">
               {/* <!--Back Button--> */}
               <div className="back-button">
-                <button>
-                  <i className="fas fa-arrow-left"></i>
-                </button>
+                <Link to="/figures">
+                  <button>
+                    <i className="fas fa-arrow-left"></i>
+                  </button>
+                </Link>
               </div>
               {/* <!--Select Modality--> */}
               <div className="select-modality">
@@ -164,9 +166,7 @@ const EditFigure = () => {
                           onClick={(e) => {
                             handleFigureToggle(e, index);
                           }}
-                        >
-                          {(position, index)}
-                        </div>
+                        ></div>
                       ))}
                 </div>
                 <div className="edit-button">

@@ -134,10 +134,10 @@ const FiguresList = () => {
                                 <div className="card-title">
                                   <p>{figureInfo.name}</p>
                                 </div>
-                                <div className="close-card">
+                                <div className="edit-card">
                                   <p>
                                     <Link to={`/figures/edit/${figureInfo.id}`}>
-                                      Edit
+                                      <i className="fas fa-pencil-alt"></i>
                                     </Link>
                                   </p>
                                 </div>

@@ -12,7 +12,7 @@ const NotFound = () => {
         <h1>404</h1>
         <p className="tracking-in-expand">SORRY, WE CAN'T FIND THAT PAGE</p>
         <button>
-          <Link to={userContext.loggedIn === true ? "/profile" : "/"}>
+          <Link to={localStorage.getItem("Token") ? "/profile" : "/"}>
             Back Homepage
           </Link>
         </button>

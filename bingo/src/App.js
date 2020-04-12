@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./App.css";
 import FiguresList from "./views/figuresList/FiguresList";
 import Login from "./views/login/Login";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Profile from "./views/profile/Profile";
 import AddFigure from "./views/addFigure/AddFigure";
 import NotFound from "./components/NotFound/NotFound";
@@ -12,7 +12,7 @@ import EditFigure from "./views/editFigure/EditFigure";
 function App() {
   const userContext = useContext(UserContext);
 
-  if (localStorage.getItem("Token") === false) {
+  if (localStorage.getItem("Token") == false) {
     return <Login />;
   }
 
