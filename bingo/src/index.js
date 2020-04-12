@@ -7,7 +7,7 @@ import UserContextProvider from "./context/UserContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserContextProvider name="victor">
+    <UserContextProvider>
       <App />
     </UserContextProvider>
   </React.StrictMode>,

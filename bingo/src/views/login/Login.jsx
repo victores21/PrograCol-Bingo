@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
 const Login = () => {
+  //context
   const userContext = useContext(UserContext);
   console.log(userContext);
   //Form data hook
@@ -38,6 +39,7 @@ const Login = () => {
           "http://staging.bingored.co:8080/userweb-0.0.1-SNAPSHOT/auth",
           requestOptions
         );
+        //response
         const res = await req.json();
         console.log(await "Res", res);
         //Token Const
