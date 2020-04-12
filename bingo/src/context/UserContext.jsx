@@ -11,24 +11,35 @@ const UserContextProvider = (props) => {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const LoginHandler = (token, name, lastName) => {
-    setToken(token);
-    setLoggedIn(true);
-    localStorage.setItem("Bearer Token", token);
+  const getUserData = (name, lastName) => {
     setUserData({
       name,
       lastName,
     });
   };
+
+  //Funcion que rescata todo eso del login
+  const LoginHandler = (token) => {
+    setToken(token);
+    setLoggedIn(true);
+  };
+
+  //Funcion para hacer logout
   const LogOutHandler = () => {
-    localStorage.removeItem("Bearer Token");
     setLoggedIn(false);
     setToken(null);
   };
 
   return (
     <UserContext.Provider
-      value={{ LoginHandler, token, loggedIn, LogOutHandler, userData }}
+      value={{
+        LoginHandler,
+        token,
+        loggedIn,
+        LogOutHandler,
+        getUserData,
+        userData,
+      }}
     >
       {props.children}
     </UserContext.Provider>

@@ -4,10 +4,12 @@ import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
-import { IsLoggedIn } from "../../components/IsLoggedIn/IsLoggedIn";
 import { Redirect } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
+import { useContext } from "react";
 
 const AddFigure = () => {
+  const userContext = useContext(UserContext);
   //states
   const [loadingModality, setLoadingModality] = useState(true);
   const [modalities, setModalities] = useState();
@@ -44,7 +46,7 @@ const AddFigure = () => {
 
   useEffect(() => {
     const getModalities = async () => {
-      var bearerToken = localStorage.getItem("Bearer Token");
+      var bearerToken = userContext.token;
       var requestOptions = {
         method: "GET",
         redirect: "follow",

@@ -6,9 +6,11 @@ import "./FiguresList.css";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
 import "@reach/tabs/styles.css";
 import { Link } from "react-router-dom";
-import { IsLoggedIn } from "../../components/IsLoggedIn/IsLoggedIn";
+import { UserContext } from "../../context/UserContext";
+import { useContext } from "react";
 
 const FiguresList = () => {
+  const userContext = useContext(UserContext);
   const [figures, setFigures] = useState();
   const [modalities, setModalities] = useState();
   const [loadingFigure, setLoadingFigure] = useState(true);
@@ -17,7 +19,7 @@ const FiguresList = () => {
   useEffect(() => {
     //First Tab
     const getFigures = async () => {
-      var bearerToken = localStorage.getItem("Bearer Token");
+      var bearerToken = userContext.token;
       var requestOptions = {
         method: "GET",
         redirect: "follow",
@@ -41,7 +43,7 @@ const FiguresList = () => {
 
     //Second Tab
     const getModalities = async () => {
-      var bearerToken = localStorage.getItem("Bearer Token");
+      var bearerToken = userContext.token;
       var requestOptions = {
         method: "GET",
         redirect: "follow",

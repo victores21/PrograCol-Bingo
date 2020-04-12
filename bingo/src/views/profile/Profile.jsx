@@ -1,38 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Profile.css";
 import avatar from "../../images/avatar.svg";
 import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Profile = () => {
+  const userContext = useContext(UserContext);
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const getProfile = async () => {
-      var bearerToken = localStorage.getItem("Bearer Token");
-      //Getting the token
-      /*  console.log("Bearer from function token", bearerToken);
-      var requestOptions = {
-        method: "GET",
-        redirect: "follow",
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          Authorization: bearerToken,
-          "Content-type": "application/json",
-        },
-      };
+      var bearerToken = userContext.token;
 
-      const req = await fetch(
-        "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/userweb-0.0.1-SNAPSHOT/myprofile",
-        requestOptions
-      );
-      const res = await req.json();
-      setUser(res.data);
-      setLoading(false);
-      console.log(res); */
       var requestOptions = {
         method: "GET",
         redirect: "follow",
@@ -49,13 +31,13 @@ const Profile = () => {
         requestOptions
       );
       const res = await req.json();
-      console.log(res);
+      userContext.getUserData(res.data.names, res.data.lastNames);
       setUser(res.data);
       setLoading(false);
     };
     getProfile();
   }, []);
-  console.log(user);
+
   return (
     <div className="profile-container">
       {console.log("User is", user)}

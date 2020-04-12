@@ -12,8 +12,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [LoggedIn, setLoggedIn] = useState(false);
-  const [Token, setToken] = useState();
 
   //Submit handler
   const handleSubmit = (event) => {
@@ -47,10 +45,9 @@ const Login = () => {
 
         //Putting the Token in Localstorage
 
-        userContext.LoginHandler(res.Authorization, res.names, res.lastNames);
+        userContext.LoginHandler(res.Authorization);
       } catch (error) {
         console.log(error);
-        setLoggedIn(false);
       }
     };
     AuthLogin();

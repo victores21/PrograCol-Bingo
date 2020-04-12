@@ -32,7 +32,9 @@ const TopNavbar = () => {
         <div className="simplemenu">
           <i className="fas fa-user-alt" onClick={() => mobileMenuOpen()}></i>
           <ul id="gmDropdown" className="dropdown-content">
-            <li id="dropdown-name">Superadmin, Michael</li>
+            <li id="dropdown-name">
+              {userContext.userData.name}, {userContext.userData.lastName}
+            </li>
             <hr />
             <li>
               <Link to="/profile">
