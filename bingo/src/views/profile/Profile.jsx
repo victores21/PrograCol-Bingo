@@ -14,6 +14,7 @@ const Profile = () => {
   useEffect(() => {
     const getProfile = async () => {
       var bearerToken = userContext.token;
+      var token = localStorage.getItem("Token");
 
       var requestOptions = {
         method: "GET",
@@ -21,7 +22,7 @@ const Profile = () => {
         withCredentials: true,
         credentials: "include",
         headers: {
-          Authorization: bearerToken,
+          Authorization: token,
           "Content-type": "application/json",
         },
       };

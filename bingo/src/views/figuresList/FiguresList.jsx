@@ -20,13 +20,14 @@ const FiguresList = () => {
     //First Tab
     const getFigures = async () => {
       var bearerToken = userContext.token;
+      var token = localStorage.getItem("Token");
       var requestOptions = {
         method: "GET",
         redirect: "follow",
         withCredentials: true,
         credentials: "include",
         headers: {
-          Authorization: bearerToken,
+          Authorization: token,
           "Content-type": "application/json",
         },
       };
@@ -44,13 +45,15 @@ const FiguresList = () => {
     //Second Tab
     const getModalities = async () => {
       var bearerToken = userContext.token;
+      var token = localStorage.getItem("Token");
+
       var requestOptions = {
         method: "GET",
         redirect: "follow",
         withCredentials: true,
         credentials: "include",
         headers: {
-          Authorization: bearerToken,
+          Authorization: token,
           "Content-type": "application/json",
         },
       };
@@ -133,7 +136,9 @@ const FiguresList = () => {
                                 </div>
                                 <div className="close-card">
                                   <p>
-                                    <Link to="/delete">X</Link>
+                                    <Link to={`/figures/edit/${figureInfo.id}`}>
+                                      Edit
+                                    </Link>
                                   </p>
                                 </div>
                                 <div className="figure-square-card">

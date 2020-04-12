@@ -47,13 +47,14 @@ const AddFigure = () => {
   useEffect(() => {
     const getModalities = async () => {
       var bearerToken = userContext.token;
+      var token = localStorage.getItem("Token");
       var requestOptions = {
         method: "GET",
         redirect: "follow",
         withCredentials: true,
         credentials: "include",
         headers: {
-          Authorization: bearerToken,
+          Authorization: token,
           "Content-type": "application/json",
         },
       };
@@ -89,7 +90,7 @@ const AddFigure = () => {
   const handleAddFigureButton = () => {
     const postFigure = async () => {
       try {
-        var bearerToken = localStorage.getItem("Bearer Token");
+        var token = localStorage.getItem("Token");
         var raw = JSON.stringify({
           idFigureGroup: idFigure,
           figureName: figureName,
@@ -103,7 +104,7 @@ const AddFigure = () => {
           credentials: "include",
           headers: {
             "Content-type": "application/json",
-            Authorization: bearerToken,
+            Authorization: token,
           },
         };
 

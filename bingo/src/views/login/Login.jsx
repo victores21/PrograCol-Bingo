@@ -48,6 +48,7 @@ const Login = () => {
         //Putting the Token in Localstorage
 
         userContext.LoginHandler(res.Authorization);
+        localStorage.setItem("Token", res.Authorization);
       } catch (error) {
         console.log(error);
       }

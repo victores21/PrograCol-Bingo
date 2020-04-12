@@ -28,6 +28,7 @@ const UserContextProvider = (props) => {
   const LogOutHandler = () => {
     setLoggedIn(false);
     setToken(null);
+    localStorage.removeItem("Token");
   };
 
   return (

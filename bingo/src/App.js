@@ -7,11 +7,12 @@ import Profile from "./views/profile/Profile";
 import AddFigure from "./views/addFigure/AddFigure";
 import NotFound from "./components/NotFound/NotFound";
 import { UserContext } from "./context/UserContext";
+import EditFigure from "./views/editFigure/EditFigure";
 
 function App() {
   const userContext = useContext(UserContext);
 
-  if (userContext.loggedIn === false) {
+  if (localStorage.getItem("Token") === false) {
     return <Login />;
   }
 
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/figures" component={FiguresList} />
           <Route exact path="/figures/add" component={AddFigure} />
+          <Route exact path="/figures/edit/:id" component={EditFigure} />
           <Route path="*" component={NotFound} />
         </Switch>
       </BrowserRouter>

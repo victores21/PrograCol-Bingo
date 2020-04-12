@@ -272,9 +272,17 @@
             grid-template-rows: 30px 30px 30px 30px 30px;
             grid-gap: 10px;
 
-            .square {
-              background: #c0c0c0;
+            .square-gray {
+              background: #c2c2c2;
               border-radius: 5px;
+              padding: 2px;
+              cursor: pointer;
+            }
+            .square-blue {
+              background: rgb(110, 203, 219);
+              border-radius: 5px;
+              padding: 2px;
+              cursor: pointer;
             }
           }
           .edit-button {
