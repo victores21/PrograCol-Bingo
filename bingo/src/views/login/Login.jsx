@@ -3,6 +3,7 @@ import "./Login.css";
 import logo from "../../images/bingo-logo.png";
 import { Redirect } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import { AuthLogin } from "../../api";
 
 const Login = () => {
   //context
@@ -17,43 +18,12 @@ const Login = () => {
   //Submit handler
   const handleSubmit = (event) => {
     event.preventDefault();
-    const AuthLogin = async () => {
-      try {
-        //Query
-        var raw = `{\n	\"username\": \"${data.email}\",\n	\"password\": \"${data.password}\"\n}`;
 
-        //Header
-        var requestOptions = {
-          method: "POST",
-          body: raw,
-          redirect: "follow",
-          withCredentials: true,
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-          },
-        };
-
-        //Fetching URL
-        const req = await fetch(
-          "http://staging.bingored.co:8080/userweb-0.0.1-SNAPSHOT/auth",
-          requestOptions
-        );
-        //response
-        const res = await req.json();
-        console.log(await "Res", res);
-        //Token Const
-        console.log("User from login", res);
-
-        //Putting the Token in Localstorage
-
-        userContext.LoginHandler(res.Authorization);
-        localStorage.setItem("Token", res.Authorization);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    AuthLogin();
+    AuthLogin(data.email, data.password).then((data) => {
+      const token = data.Authorization;
+      localStorage.setItem("Token", token);
+      userContext.LoginHandler(token);
+    });
   };
 
   //Hook that get the data and put it into the hook data

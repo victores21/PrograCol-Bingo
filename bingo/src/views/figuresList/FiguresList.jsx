@@ -19,7 +19,6 @@ const FiguresList = () => {
   useEffect(() => {
     //First Tab
     const getFigures = async () => {
-      var bearerToken = userContext.token;
       var token = localStorage.getItem("Token");
       var requestOptions = {
         method: "GET",
@@ -44,7 +43,6 @@ const FiguresList = () => {
 
     //Second Tab
     const getModalities = async () => {
-      var bearerToken = userContext.token;
       var token = localStorage.getItem("Token");
 
       var requestOptions = {
@@ -68,28 +66,6 @@ const FiguresList = () => {
       console.log("Modality", res);
     };
 
-    /*     //Delete Method
-    const deleteFigure =async ()=>{
-      var bearerToken = localStorage.getItem("Bearer Token");
-      var requestOptions = {
-        method: "DELETE",
-        redirect: "follow",
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          Authorization: bearerToken,
-          "Content-type": "application/json",
-        },
-      };
-      var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
-      
-      const req = await fetch("http://186.147.125.7:8080/game-0.0.1-SNAPSHOT/figure/:id", requestOptions)
-      const res = await req.json();
-      console.log(res);
-    } */
     getFigures();
     getModalities();
   }, []);

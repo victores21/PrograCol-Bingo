@@ -46,7 +46,6 @@ const AddFigure = () => {
 
   useEffect(() => {
     const getModalities = async () => {
-      var bearerToken = userContext.token;
       var token = localStorage.getItem("Token");
       var requestOptions = {
         method: "GET",
