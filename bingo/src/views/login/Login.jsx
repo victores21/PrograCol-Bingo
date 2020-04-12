@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Login.css";
 import logo from "../../images/bingo-logo.png";
 import { Redirect } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Login = () => {
+  const userContext = useContext(UserContext);
+  console.log(userContext);
   //Form data hook
   const [data, setData] = useState({
     email: "",
@@ -40,12 +43,11 @@ const Login = () => {
         const res = await req.json();
         console.log(await "Res", res);
         //Token Const
-        console.log(res);
-        setToken(res.Authorization);
-        setLoggedIn(true);
+        console.log("User from login", res);
 
         //Putting the Token in Localstorage
-        localStorage.setItem("Bearer Token", res.Authorization);
+
+        userContext.LoginHandler(res.Authorization, res.names, res.lastNames);
       } catch (error) {
         console.log(error);
         setLoggedIn(false);
@@ -63,8 +65,12 @@ const Login = () => {
   };
 
   //If logged In go to Profile View
-  if (LoggedIn || localStorage.getItem("Bearer Token")) {
-    return <Redirect to="/profile" />;
+  if (userContext.loggedIn) {
+    return (
+      <>
+        <Redirect to="/profile" />
+      </>
+    );
   }
 
   return (

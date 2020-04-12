@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./TopNavbar.css";
 import { Link } from "react-router-dom";
-
+import { UserContext } from "../../context/UserContext";
 const TopNavbar = () => {
+  const userContext = useContext(UserContext);
   //Open LeftNavbarHandler
   const openNavHandler = () => {
     if (window.matchMedia("(max-width: 900px)").matches) {
@@ -39,7 +40,7 @@ const TopNavbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/logout">
+              <Link to="/" onClick={(e) => userContext.LogOutHandler(e)}>
                 <i className="fas fa-sign-out-alt"></i> Cerrar Sesion
               </Link>
             </li>
