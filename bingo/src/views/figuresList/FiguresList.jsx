@@ -25,7 +25,7 @@ const FiguresList = () => {
       setLoadingFigure(false);
     });
 
-    //Second Tab
+    //Second Tab (Fetching modalities)
 
     getModalities().then((modalitiesList) => {
       setModalities(modalitiesList.data);

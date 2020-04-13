@@ -7,11 +7,57 @@ import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { getProfile } from "../../api";
+import dateFormat from "dateformat";
 
 const Profile = () => {
   const userContext = useContext(UserContext);
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  dateFormat.i18n = {
+    dayNames: [
+      "Dom",
+      "Lun",
+      "Mar",
+      "Mier",
+      "Jue",
+      "Vier",
+      "Sab",
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ],
+    monthNames: [
+      "Ene",
+      "Feb",
+      "Mar",
+      "Abr",
+      "May",
+      "Jun",
+      "Jul",
+      "Agos",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre",
+    ],
+    timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
+  };
   useEffect(() => {
     //Getting the User profile
     getProfile().then((user) => {
@@ -200,7 +246,9 @@ const Profile = () => {
                             <p>Fecha de creacion</p>
                           </div>
                           <div className="name">
-                            <p className="user-info-title">{user.createdAt}</p>
+                            <p className="user-info-title">
+                              {dateFormat(user.createdAt, "mmmm d, yyyy")}
+                            </p>
                           </div>
                         </div>
                       </div>

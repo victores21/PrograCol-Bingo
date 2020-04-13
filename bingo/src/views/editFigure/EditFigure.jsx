@@ -19,6 +19,7 @@ const EditFigure = () => {
   const [idFigureModality, setIdFigureModality] = useState(1);
   const [edited, setEdited] = useState(false);
   const idNumber = parseInt(id);
+  //Loading component css
   const override = css`
     display: block;
     margin: 0 auto;
@@ -50,6 +51,7 @@ const EditFigure = () => {
     setIdFigureModality(e.target.value);
   };
   console.log("PositionArray is:", positionsArray);
+  //Edit handler
   const handleEdit = () => {
     //EDIT THE FIGURE
     editFigure(idNumber, figureName, idFigureModality, positionsArray).then(

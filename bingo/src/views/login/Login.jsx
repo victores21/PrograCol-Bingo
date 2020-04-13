@@ -23,6 +23,7 @@ const Login = () => {
       const token = data.Authorization;
       localStorage.setItem("Token", token);
       userContext.LoginHandler(token);
+      console.log(data);
     });
   };
 

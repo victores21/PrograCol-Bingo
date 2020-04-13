@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./AddFigure.css";
 import LeftNavbar from "../../components/LeftNavbar/LeftNavbar";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
-import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import { useContext } from "react";
 import { getModalities, postFigure } from "../../api";
 
 const AddFigure = () => {
