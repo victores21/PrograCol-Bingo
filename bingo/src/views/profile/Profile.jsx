@@ -160,7 +160,7 @@ const Profile = () => {
                         </div>
                         <div className="text-as">
                           <div className="name-title">
-                            <p>Fecha de creacion</p>
+                            <p>Fecha de creaci&oacute;n</p>
                           </div>
                           <div className="name">
                             <p className="user-info-title">...</p>
@@ -243,7 +243,7 @@ const Profile = () => {
                         </div>
                         <div className="text-as">
                           <div className="name-title">
-                            <p>Fecha de creacion</p>
+                            <p>Fecha de creaci&oacute;n</p>
                           </div>
                           <div className="name">
                             <p className="user-info-title">

@@ -43,7 +43,7 @@ const TopNavbar = () => {
             </li>
             <li>
               <Link to="/" onClick={(e) => userContext.LogOutHandler(e)}>
-                <i className="fas fa-sign-out-alt"></i> Cerrar Sesion
+                <i className="fas fa-sign-out-alt"></i> Cerrar Sesi&oacute;n
               </Link>
             </li>
           </ul>
