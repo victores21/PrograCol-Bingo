@@ -12,24 +12,25 @@ import EditFigure from "./views/editFigure/EditFigure";
 function App() {
   const userContext = useContext(UserContext);
 
-  if (localStorage.getItem("Token") == false) {
+  if (!localStorage.getItem("Token")) {
     return <Login />;
   }
-
-  return (
-    <>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/figures" component={FiguresList} />
-          <Route exact path="/figures/add" component={AddFigure} />
-          <Route exact path="/figures/edit/:id" component={EditFigure} />
-          <Route path="*" component={NotFound} />
-        </Switch>
-      </BrowserRouter>
-    </>
-  );
+  if (localStorage.getItem("Token")) {
+    return (
+      <>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/figures" component={FiguresList} />
+            <Route exact path="/figures/add" component={AddFigure} />
+            <Route exact path="/figures/edit/:id" component={EditFigure} />
+            <Route path="*" component={NotFound} />
+          </Switch>
+        </BrowserRouter>
+      </>
+    );
+  }
 }
 
 export default App;

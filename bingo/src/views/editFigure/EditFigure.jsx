@@ -6,6 +6,8 @@ import Footer from "../../components/Footer/Footer";
 import "./EditFigure.css";
 import { useParams, Redirect, Link } from "react-router-dom";
 import { getFigureById, editFigure } from "../../api";
+import { css } from "@emotion/core";
+import SquareLoader from "react-spinners/SquareLoader";
 
 const EditFigure = () => {
   const userContext = useContext(UserContext);
@@ -17,6 +19,12 @@ const EditFigure = () => {
   const [idFigureModality, setIdFigureModality] = useState(1);
   const [edited, setEdited] = useState(false);
   const idNumber = parseInt(id);
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+    margin-bottom: 5rem;
+  `;
   useEffect(() => {
     //Get the figure by Id
     getFigureById(idNumber).then((figureInfo) => {
@@ -54,6 +62,14 @@ const EditFigure = () => {
   console.log("ID IS", id);
   if (edited) {
     return <Redirect to="/figures" />;
+  }
+
+  if (loadingFigure) {
+    return (
+      <div className="sweet-loading">
+        <SquareLoader css={override} size={50} color={"#0071bd"} />
+      </div>
+    );
   }
   return (
     <>

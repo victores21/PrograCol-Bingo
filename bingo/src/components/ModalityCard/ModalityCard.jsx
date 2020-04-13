@@ -1,8 +1,23 @@
 import React from "react";
 import "./ModalityCard.css";
 import { Link } from "react-router-dom";
+import { css } from "@emotion/core";
+import SquareLoader from "react-spinners/SquareLoader";
 
 const ModalityCard = ({ modalities, loadingModality }) => {
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+    margin-bottom: 5rem;
+  `;
+  if (loadingModality) {
+    return (
+      <div className="sweet-loading">
+        <SquareLoader css={override} size={50} color={"#0071bd"} />
+      </div>
+    );
+  }
   return (
     <>
       <div className="modality-list">
