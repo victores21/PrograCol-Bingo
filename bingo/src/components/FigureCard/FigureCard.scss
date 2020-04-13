@@ -1,0 +1,79 @@
+.figures {
+  height: 100%;
+  width: 100%;
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    list-style: none;
+    grid-gap: 1rem;
+
+    li {
+      border: 1px solid #c0c0c0;
+      border-radius: 5px;
+      padding: 0rem 1rem 0rem 1rem;
+      .figure-card {
+        display: grid;
+        grid-template-areas:
+          "card-title edit-card"
+          "figure-square-card figure-square-card";
+        padding-top: 1rem;
+
+        .card-title {
+          grid-area: card-title;
+          font-size: 10px;
+          display: grid;
+          justify-content: start;
+        }
+        .edit-card {
+          grid-area: edit-card;
+          font-size: 18px;
+          display: grid;
+          justify-content: end;
+          padding-right: 1rem;
+          cursor: pointer;
+
+          i {
+            color: #f5b077;
+          }
+        }
+        .figure-square-card {
+          grid-area: figure-square-card;
+          padding-top: 1rem;
+          margin-bottom: 1rem;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+          grid-template-rows: 30px 30px 30px 30px 30px;
+          grid-gap: 5px;
+          .square-gray {
+            background: #c2c2c2;
+            border-radius: 5px;
+            padding: 2px;
+          }
+          .square-blue {
+            background: rgb(110, 203, 219);
+            border-radius: 5px;
+            padding: 2px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .figures {
+    ul {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+}
+@media (min-width: 1440px) {
+  .figures {
+    padding: 0 2rem;
+    ul {
+      grid-gap: 2rem !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+    }
+  }
+}

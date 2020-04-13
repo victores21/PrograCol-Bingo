@@ -1,3 +1,9 @@
+const endpoint = {
+  url: "http://staging.bingored.co:8080",
+  gameweb: "gameweb-0.0.1-SNAPSHOT",
+  userweb: "userweb-0.0.1-SNAPSHOT",
+};
+
 //Login
 export const AuthLogin = async (email, password) => {
   try {
@@ -18,7 +24,7 @@ export const AuthLogin = async (email, password) => {
 
     //Fetching URL
     const req = await fetch(
-      "http://staging.bingored.co:8080/userweb-0.0.1-SNAPSHOT/auth",
+      `${endpoint.url}/${endpoint.userweb}/auth`,
       requestOptions
     );
     //response
@@ -31,77 +37,176 @@ export const AuthLogin = async (email, password) => {
 
 //GET PROFILE
 export const getProfile = async () => {
-  var token = localStorage.getItem("Token");
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-    withCredentials: true,
-    credentials: "include",
-    headers: {
-      Authorization: token,
-      "Content-type": "application/json",
-    },
-  };
+  try {
+    var token = localStorage.getItem("Token");
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      withCredentials: true,
+      credentials: "include",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+    };
 
-  const req = await fetch(
-    "http://staging.bingored.co:8080/userweb-0.0.1-SNAPSHOT/myprofile",
-    requestOptions
-  );
-  const res = await req.json();
-  /* userContext.getUserData(res.data.names, res.data.lastNames);
-        setUser(res.data);
-        setLoading(false); */
-  return res;
+    const req = await fetch(
+      `${endpoint.url}/${endpoint.userweb}/myprofile`,
+      requestOptions
+    );
+    const res = await req.json();
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 //GET FIGURE LIST
 
 export const getFigures = async () => {
-  var token = localStorage.getItem("Token");
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-    withCredentials: true,
-    credentials: "include",
-    headers: {
-      Authorization: token,
-      "Content-type": "application/json",
-    },
-  };
+  try {
+    var token = localStorage.getItem("Token");
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      withCredentials: true,
+      credentials: "include",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+    };
 
-  const req = await fetch(
-    "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/figure",
-    requestOptions
-  );
-  const res = await req.json();
-  return res;
-  /*     console.log("Lista de figuras", res);
-    setFigures(res.data);
-    setLoadingFigure(false); */
+    const req = await fetch(
+      `${endpoint.url}/${endpoint.gameweb}/figure`,
+      requestOptions
+    );
+    const res = await req.json();
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//Get figure By Id
+
+export const getFigureById = async (figureId) => {
+  try {
+    var token = localStorage.getItem("Token");
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      withCredentials: true,
+      credentials: "include",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+    };
+
+    const req = await fetch(
+      `${endpoint.url}/${endpoint.gameweb}/figure/${figureId}`,
+      requestOptions
+    );
+    const res = await req.json();
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 //Get the Figure Modalities
 
 export const getModalities = async () => {
-  var token = localStorage.getItem("Token");
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-    withCredentials: true,
-    credentials: "include",
-    headers: {
-      Authorization: token,
-      "Content-type": "application/json",
-    },
-  };
+  try {
+    var token = localStorage.getItem("Token");
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      withCredentials: true,
+      credentials: "include",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+    };
 
-  const req = await fetch(
-    "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/groupfigure",
-    requestOptions
-  );
-  const res = await req.json();
-  return res;
-  /*     setModalities(res.data);
-    setLoadingModality(false);
-    console.log("Modality", res); */
+    const req = await fetch(
+      `${endpoint.url}/${endpoint.gameweb}/groupfigure`,
+      requestOptions
+    );
+    const res = await req.json();
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//Add Figure
+export const postFigure = async (idFigure, figureName, positionsArray) => {
+  try {
+    var token = localStorage.getItem("Token");
+    var raw = JSON.stringify({
+      idFigureGroup: idFigure,
+      figureName: figureName,
+      positions: positionsArray,
+    });
+    var requestOptions = {
+      method: "POST",
+      body: raw,
+      redirect: "follow",
+      withCredentials: true,
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: token,
+      },
+    };
+
+    const req = await fetch(
+      `${endpoint.url}/${endpoint.gameweb}/figure`,
+      requestOptions
+    );
+    const res = req.json();
+    return res;
+  } catch (error) {
+    console.log("Error");
+  }
+};
+
+//Edit Figure
+export const editFigure = async (
+  figureId,
+  figureName,
+  idFigureModality,
+  positionsArray
+) => {
+  try {
+    var token = localStorage.getItem("Token");
+    console.log("PositionArray from editFigureHandler", positionsArray);
+    var raw = JSON.stringify({
+      id: figureId,
+      figureName: figureName,
+      idFigureGroup: idFigureModality,
+      positions: positionsArray,
+    });
+    var requestOptions = {
+      method: "PUT",
+      body: raw,
+      redirect: "follow",
+      withCredentials: true,
+      credentials: "include",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+    };
+    const req = await fetch(
+      `${endpoint.url}/${endpoint.gameweb}/figure/${figureId}`,
+      requestOptions
+    );
+    const res = await req.json();
+  } catch (error) {
+    console.log(error);
+  }
 };

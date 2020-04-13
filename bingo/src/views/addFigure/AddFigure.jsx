@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
+import { getModalities, postFigure } from "../../api";
 
 const AddFigure = () => {
   const userContext = useContext(UserContext);
@@ -45,30 +46,10 @@ const AddFigure = () => {
   const [created, setCreated] = useState(false);
 
   useEffect(() => {
-    const getModalities = async () => {
-      var token = localStorage.getItem("Token");
-      var requestOptions = {
-        method: "GET",
-        redirect: "follow",
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          Authorization: token,
-          "Content-type": "application/json",
-        },
-      };
-
-      const req = await fetch(
-        "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/groupfigure",
-        requestOptions
-      );
-      const res = await req.json();
-      setModalities(res.data);
+    getModalities().then((modalitiesList) => {
+      setModalities(modalitiesList.data);
       setLoadingModality(false);
-      console.log("Modality", res);
-    };
-
-    getModalities();
+    });
   }, [setLoadingModality]);
 
   //handlerBingoCardToggler
@@ -87,39 +68,9 @@ const AddFigure = () => {
   };
   //Add Button
   const handleAddFigureButton = () => {
-    const postFigure = async () => {
-      try {
-        var token = localStorage.getItem("Token");
-        var raw = JSON.stringify({
-          idFigureGroup: idFigure,
-          figureName: figureName,
-          positions: positionsArray,
-        });
-        var requestOptions = {
-          method: "POST",
-          body: raw,
-          redirect: "follow",
-          withCredentials: true,
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: token,
-          },
-        };
-
-        const req = await fetch(
-          "http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/figure",
-          requestOptions
-        );
-        const res = req.json();
-        setCreated(true);
-        console.log(res);
-      } catch (error) {
-        console.log("Error");
-        setCreated(false);
-      }
-    };
-    postFigure();
+    postFigure(idFigure, figureName, positionsArray).then(() => {
+      setCreated(true);
+    });
   };
 
   if (created) {

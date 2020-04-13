@@ -5,6 +5,7 @@ import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
 import "./EditFigure.css";
 import { useParams, Redirect, Link } from "react-router-dom";
+import { getFigureById, editFigure } from "../../api";
 
 const EditFigure = () => {
   const userContext = useContext(UserContext);
@@ -17,34 +18,14 @@ const EditFigure = () => {
   const [edited, setEdited] = useState(false);
   const idNumber = parseInt(id);
   useEffect(() => {
-    //Get the figure
-    const getFigureById = async () => {
-      var bearerToken = userContext.token;
-      var token = localStorage.getItem("Token");
-      var requestOptions = {
-        method: "GET",
-        redirect: "follow",
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          Authorization: token,
-          "Content-type": "application/json",
-        },
-      };
-
-      const req = await fetch(
-        `http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/figure/${id}`,
-        requestOptions
-      );
-      const res = await req.json();
-      setPositionsArray(res.data.positionsWinner);
-      setFigure(res.data);
+    //Get the figure by Id
+    getFigureById(idNumber).then((figureInfo) => {
+      setPositionsArray(figureInfo.data.positionsWinner);
+      setFigure(figureInfo.data);
       setLoadingFigure(false);
-      setFigureName(res.data.name);
-    };
-    getFigureById();
+      setFigureName(figureInfo.data.name);
+    });
   }, [loadingFigure]);
-  console.log("Figura por ID", figure);
 
   //handlers
   const handleFigureToggle = (e, index) => {
@@ -63,40 +44,11 @@ const EditFigure = () => {
   console.log("PositionArray is:", positionsArray);
   const handleEdit = () => {
     //EDIT THE FIGURE
-    const editFigure = async () => {
-      try {
-        var token = localStorage.getItem("Token");
-        console.log("PositionArray from editFigureHandler", positionsArray);
-        var raw = JSON.stringify({
-          id: id,
-          figureName: figureName,
-          idFigureGroup: idFigureModality,
-          positions: positionsArray,
-        });
-        var requestOptions = {
-          method: "PUT",
-          body: raw,
-          redirect: "follow",
-          withCredentials: true,
-          credentials: "include",
-          headers: {
-            Authorization: token,
-            "Content-type": "application/json",
-          },
-        };
-        const req = await fetch(
-          `http://staging.bingored.co:8080/gameweb-0.0.1-SNAPSHOT/figure/${id}`,
-          requestOptions
-        );
-        const res = await req.json();
+    editFigure(idNumber, figureName, idFigureModality, positionsArray).then(
+      (response) => {
         setEdited(true);
-        console.log("res", res);
-        console.log("raw", raw);
-      } catch (error) {
-        console.log(error);
       }
-    };
-    editFigure();
+    );
   };
   console.log("Array from positions", positionsArray);
   console.log("ID IS", id);

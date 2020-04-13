@@ -188,34 +188,14 @@
   }
 }
 
-@media (min-width: 768px) {
-  .figures {
-    ul {
-      grid-template-columns: 1fr 1fr !important;
-    }
-  }
-}
 @media (min-width: 1024px) {
   .all-figure-info {
     margin: 2rem 6rem 2rem 6rem !important;
-  }
-  .figures {
-    ul {
-      grid-gap: 2rem !important;
-      grid-template-columns: 1fr 1fr 1fr !important;
-    }
   }
 }
 
 @media (min-width: 1440px) {
   .all-figure-info {
     margin: 2rem 6rem 2rem 6rem !important;
-  }
-  .figures {
-    padding: 0 2rem;
-    ul {
-      grid-gap: 2rem !important;
-      grid-template-columns: 1fr 1fr 1fr !important;
-    }
   }
 }

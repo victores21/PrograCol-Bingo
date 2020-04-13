@@ -8,6 +8,8 @@ import "@reach/tabs/styles.css";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { getFigures, getModalities } from "../../api";
+import FigureCard from "../../components/FigureCard/FigureCard";
+import ModalityCard from "../../components/ModalityCard/ModalityCard";
 
 const FiguresList = () => {
   const userContext = useContext(UserContext);
@@ -60,80 +62,18 @@ const FiguresList = () => {
                 {/*First Tab (Lista con figuras tab) */}
                 <TabPanel>
                   {/* <!--All figures list--> */}
-                  <div className="figures">
-                    <ul>
-                      {/* AllFigures card*/}
-                      {loadingFigure
-                        ? console.log("Loading...")
-                        : figures.map((figureInfo) => (
-                            <li key={figureInfo.id}>
-                              <div className="figure-card">
-                                <div className="card-title">
-                                  <p>{figureInfo.name}</p>
-                                </div>
-                                <div className="edit-card">
-                                  <p>
-                                    <Link to={`/figures/edit/${figureInfo.id}`}>
-                                      <i className="fas fa-pencil-alt"></i>
-                                    </Link>
-                                  </p>
-                                </div>
-                                <div className="figure-square-card">
-                                  {figureInfo.positionsWinner.map(
-                                    (positionWinner, index) => (
-                                      <div
-                                        key={index}
-                                        className={
-                                          positionWinner
-                                            ? "square-blue"
-                                            : "square-gray"
-                                        }
-                                      ></div>
-                                    )
-                                  )}
-                                </div>
-                              </div>
-                            </li>
-                          ))}
-                    </ul>
-                  </div>
+                  <FigureCard figures={figures} loadingFigure={loadingFigure} />
                 </TabPanel>
 
                 {/*Second Tab (Lista con modalidades) */}
                 <TabPanel>
-                  <div className="modality-list">
-                    <table>
-                      <tbody>
-                        <tr>
-                          <th>Nombre de Modalidad</th>
-                          <th>Oportunidad</th>
-                          <th>Cerrar al lanzar</th>
-                          <th>Acciones</th>
-                        </tr>
-                        {loadingModality
-                          ? console.log("Loading...")
-                          : modalities.map((modality) => (
-                              <tr key={modality.id}>
-                                <td>{modality.name}</td>
-                                <td>{modality.opportunity}</td>
-                                <td>{modality.closeAt}</td>
-                                <td>
-                                  <Link to="/edit">
-                                    <i className="fas fa-pencil-alt"></i>
-                                  </Link>
-                                  <Link to="/delete/:id">
-                                    <i className="fas fa-times"></i>
-                                  </Link>
-                                </td>
-                              </tr>
-                            ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  <ModalityCard
+                    modalities={modalities}
+                    loadingModality={loadingModality}
+                  />
                 </TabPanel>
               </TabPanels>
             </Tabs>
-            {/* <!--Header--> */}
           </div>
         </div>
 
