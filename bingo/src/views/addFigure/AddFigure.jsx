@@ -46,6 +46,7 @@ const AddFigure = () => {
   const [created, setCreated] = useState(false);
 
   useEffect(() => {
+    //GetModalities Fetching
     getModalities().then((modalitiesList) => {
       setModalities(modalitiesList.data);
       setLoadingModality(false);
@@ -68,6 +69,7 @@ const AddFigure = () => {
   };
   //Add Button
   const handleAddFigureButton = () => {
+    //Post Figure petition
     postFigure(idFigure, figureName, positionsArray).then(() => {
       setCreated(true);
     });
